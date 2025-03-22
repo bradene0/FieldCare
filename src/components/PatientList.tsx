@@ -107,7 +107,6 @@ export function PatientList() {
         setExpandedPatient(false);
       } catch (error) {
         console.error('Error deleting patient:', error);
-        // You might want to show an error message to the user here
       }
     }
   };
@@ -234,7 +233,7 @@ export function PatientList() {
                     },
                   }}
                 >
-                  <AccordionSummary 
+                  <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     sx={{
                       backgroundColor: expandedPatient === patient.id ? 'rgba(25, 118, 210, 0.08)' : 'transparent',
@@ -260,7 +259,7 @@ export function PatientList() {
                           {patient.dateOfBirth}
                         </Typography>
                       </Box>
-                      <Box 
+                      <Box
                         onClick={(e) => e.stopPropagation()}
                         sx={{
                           display: 'flex',
@@ -300,7 +299,7 @@ export function PatientList() {
                       </Box>
                     </Box>
                   </AccordionSummary>
-                  <AccordionDetails sx={{ px: 3, py: 2, bgcolor: 'background.default' }}>
+                  <AccordionDetails>
                     <Box sx={{ mb: 3 }}>
                       <Typography variant="body2" color="text.secondary" paragraph>
                         <strong>Phone:</strong> {patient.phoneNumber}

@@ -10,11 +10,8 @@ import {
   Typography,
   Box
 } from '@mui/material';
-import { Visit, Patient, FieldCareDB } from '../db/database';
-import { SyncService } from '../services/syncService';
-
-const db = new FieldCareDB();
-const syncService = SyncService.getInstance();
+import { Visit, Patient } from '../db/database';
+import { useDatabase } from '../db/DatabaseContext';
 
 interface VisitFormProps {
   open: boolean;
@@ -25,6 +22,7 @@ interface VisitFormProps {
 }
 
 export function VisitForm({ open, onClose, patient, visit, onSave }: VisitFormProps) {
+  const { db } = useDatabase();
   const [formData, setFormData] = useState<Partial<Visit>>({
     patientId: patient.id,
     date: new Date().toISOString().split('T')[0],
@@ -42,8 +40,22 @@ export function VisitForm({ open, onClose, patient, visit, onSave }: VisitFormPr
   useEffect(() => {
     if (visit) {
       setFormData(visit);
+    } else {
+      setFormData({
+        patientId: patient.id,
+        date: new Date().toISOString().split('T')[0],
+        notes: '',
+        vitalSigns: {
+          bloodPressure: '',
+          temperature: '',
+          heartRate: '',
+          oxygenSaturation: ''
+        },
+        medications: [],
+        syncStatus: 'pending'
+      });
     }
-  }, [visit]);
+  }, [visit, patient.id, open]);
 
   const handleChange = (field: keyof Visit) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -65,15 +77,11 @@ export function VisitForm({ open, onClose, patient, visit, onSave }: VisitFormPr
 
   const handleSubmit = async () => {
     try {
-      let visitId: number;
       if (visit?.id) {
         await db.visits.update(visit.id, formData);
-        visitId = visit.id;
       } else {
-        visitId = await db.visits.add(formData as Visit);
+        await db.visits.add(formData as Visit);
       }
-      
-      await syncService.markForSync(visitId);
       onSave();
       onClose();
     } catch (error) {
