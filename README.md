@@ -44,21 +44,52 @@ VITE_FIREBASE_APP_ID=your_app_id
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/bradene0/FieldCare.git
-cd FieldCare
-```
+1. Extract the contents of the zip file to your desired location
+2. Create a `.env` file in the root directory with the following Firebase configuration:
+   ```
+   REACT_APP_FIREBASE_API_KEY=your_api_key
+   REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+   REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   REACT_APP_FIREBASE_APP_ID=your_app_id
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+## Running the Application
 
-3. Start the development server:
-```bash
-npm run dev
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm start
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+4. Serve the production build:
+   ```bash
+   serve -s build
+   ```
+
+## Deployment
+
+The application can be deployed to any static hosting service. The `build` folder contains the production-ready files.
+
+## Requirements
+
+- Node.js 14 or higher
+- npm 6 or higher
+- Modern web browser with JavaScript enabled
+
+## Support
+
+For support, please contact your system administrator or refer to the documentation.
 
 ## Project Structure
 
