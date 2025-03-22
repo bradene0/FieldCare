@@ -1,66 +1,116 @@
-# FieldCare - Nursing Visit Tracker
+# FieldCare
 
-A Progressive Web App (PWA) designed for field nurses to track patient visits and manage care records while working offline. The app automatically syncs data when an internet connection is available.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A modern healthcare management system built with React, TypeScript, and IndexedDB for offline-first functionality.
+
+## Technical Stack
+
+- **Frontend Framework**: React 18 with TypeScript
+- **UI Components**: Material-UI v5
+- **State Management**: React Context API
+- **Database**: IndexedDB (via Dexie.js)
+- **Authentication**: Firebase Authentication
+- **Build Tool**: Vite
+- **Package Manager**: npm
 
 ## Features
 
-- Offline-first functionality
-- Patient management
-- Visit tracking with vital signs
-- Automatic data synchronization
-- Mobile-friendly interface
-- Installable as a PWA
+- Offline-first architecture with IndexedDB
+- Real-time network status monitoring
+- Secure authentication via Google OAuth
+- Responsive Material Design UI
+- Type-safe development with TypeScript
+- Progressive Web App (PWA) capabilities
 
-## Tech Stack
+## Prerequisites
 
-- React + TypeScript
-- Vite
-- Material-UI
-- Dexie.js (IndexedDB wrapper)
-- PWA capabilities
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+- Firebase project with Google Authentication enabled
 
-## Getting Started
+## Environment Variables
 
-1. Clone the repository
+Create a `.env` file in the root directory with the following variables:
+
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/bradene0/FieldCare.git
+cd FieldCare
+```
+
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
+
 3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+```bash
+npm run dev
+```
 
-## Development
+## Project Structure
 
-The app uses the following key technologies:
+```
+src/
+├── auth/           # Authentication context and Firebase configuration
+├── components/     # React components
+├── db/            # Database configuration and types
+├── services/      # Business logic and API services
+└── types/         # TypeScript type definitions
+```
 
-- **Dexie.js**: For offline data storage using IndexedDB
-- **Service Worker**: For offline functionality and caching
-- **Material-UI**: For a responsive and modern UI
-- **TypeScript**: For type safety and better development experience
+## Database Schema
 
-## Offline Functionality
+### Patients
+```typescript
+interface Patient {
+  id?: number;
+  name: string;
+  dateOfBirth: string;
+  address: string;
+  phoneNumber: string;
+  lastVisit?: string;
+}
+```
 
-The app is designed to work completely offline:
-
-1. All data is stored locally using IndexedDB
-2. Changes are tracked with a sync status
-3. When online, pending changes are automatically synchronized
-4. The app can be installed on mobile devices for offline access
+### Visits
+```typescript
+interface Visit {
+  id?: number;
+  patientId: number;
+  date: string;
+  notes: string;
+  vitalSigns: {
+    bloodPressure?: string;
+    temperature?: string;
+    heartRate?: string;
+    oxygenSaturation?: string;
+  };
+  medications?: string[];
+  syncStatus: 'pending' | 'synced';
+}
+```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
