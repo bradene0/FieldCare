@@ -47,6 +47,12 @@ export function PatientForm({ open, onClose, patient, onSave }: PatientFormProps
   };
 
   const handleSubmit = async () => {
+    // Check if all fields are empty
+    const isAllEmpty = Object.values(formData).every(value => !value);
+    if (isAllEmpty) {
+      return;
+    }
+
     // Validate required fields
     if (!formData.name || !formData.dateOfBirth || !formData.address || !formData.phoneNumber) {
       return;

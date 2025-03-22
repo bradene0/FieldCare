@@ -75,6 +75,15 @@ export function VisitForm({ open, onClose, patient, visit, onSave }: VisitFormPr
   };
 
   const handleSubmit = async () => {
+    // Check if all fields are empty
+    const isAllEmpty = !formData.date && 
+                      !formData.notes && 
+                      formData.vitalSigns && 
+                      Object.values(formData.vitalSigns).every(value => !value);
+    if (isAllEmpty) {
+      return;
+    }
+
     // Validate required fields
     if (!formData.date || !formData.notes) {
       return;
