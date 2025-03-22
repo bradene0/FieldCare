@@ -47,6 +47,11 @@ export function PatientForm({ open, onClose, patient, onSave }: PatientFormProps
   };
 
   const handleSubmit = async () => {
+    // Validate required fields
+    if (!formData.name || !formData.dateOfBirth || !formData.address || !formData.phoneNumber) {
+      return;
+    }
+
     try {
       if (patient?.id) {
         await db.patients.update(patient.id, formData);

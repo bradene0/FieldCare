@@ -7,8 +7,7 @@ import {
   TextField,
   Button,
   Grid,
-  Typography,
-  Box
+  Typography
 } from '@mui/material';
 import { Visit, Patient } from '../db/database';
 import { useDatabase } from '../db/DatabaseContext';
@@ -76,6 +75,11 @@ export function VisitForm({ open, onClose, patient, visit, onSave }: VisitFormPr
   };
 
   const handleSubmit = async () => {
+    // Validate required fields
+    if (!formData.date || !formData.notes) {
+      return;
+    }
+
     try {
       if (visit?.id) {
         await db.visits.update(visit.id, formData);
