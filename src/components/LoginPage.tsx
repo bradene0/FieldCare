@@ -1,4 +1,12 @@
-import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import React from 'react';
+import { 
+  Container, 
+  Typography, 
+  Button, 
+  Paper,
+  useTheme,
+  useMediaQuery
+} from '@mui/material';
 import { Google as GoogleIcon } from '@mui/icons-material';
 import { useAuth } from '../auth/AuthContext';
 

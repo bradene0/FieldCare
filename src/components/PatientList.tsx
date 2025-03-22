@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   List, 
   ListItem, 
+  ListItemText,
+  ListItemSecondaryAction,
   Typography,
   Button,
   Accordion,
@@ -15,6 +17,11 @@ import {
   CardContent,
   IconButton,
   Paper,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
 } from '@mui/material';
 import { Add as AddIcon, Edit as EditIcon, ExpandMore as ExpandMoreIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { Patient, Visit } from '../db/database';
@@ -53,7 +60,7 @@ export function PatientList() {
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const handleAddPatient = () => {
     setSelectedPatient(undefined);

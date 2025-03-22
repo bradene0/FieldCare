@@ -1,5 +1,12 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { auth, GoogleAuthProvider, signInWithPopup, signOut, type FirebaseUser } from './firebase';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { 
+  auth, 
+  GoogleAuthProvider, 
+  signInWithPopup, 
+  signOut, 
+  onAuthStateChanged,
+  type FirebaseUser 
+} from '../firebase';
 
 interface User {
   id: string;

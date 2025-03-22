@@ -1,27 +1,38 @@
 {
-  "name": "FieldCare - Nursing Visit Tracker",
   "short_name": "FieldCare",
-  "description": "Offline-capable app for field nurses to track patient visits",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1976d2",
+  "name": "FieldCare - Mobile Healthcare App",
   "icons": [
     {
-      "src": "/pwa-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
     },
     {
-      "src": "/pwa-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/pwa-512x512.png",
-      "sizes": "512x512",
+      "src": "logo192.png",
       "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "scope": "/",
+  "description": "A mobile healthcare application for field workers to manage patient visits and records.",
+  "categories": ["healthcare", "productivity", "medical"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Home Screen"
     }
   ]
 } 
